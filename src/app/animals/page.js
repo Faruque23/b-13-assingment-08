@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { animals } from "../../data/animals";
+import { useEffect, useMemo, useState } from "react";
+import { getAnimals } from "../../data/animals";
 
 const formatPrice = (amount) =>
   new Intl.NumberFormat("en-BD", {
@@ -12,7 +12,29 @@ const formatPrice = (amount) =>
   }).format(amount);
 
 export default function AllAnimalsPage() {
+  const [animals, setAnimals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState("lowToHigh");
+
+  useEffect(() => {
+    let ignoreResult = false;
+
+    const fetchAnimals = async () => {
+      setIsLoading(true);
+      const response = await getAnimals();
+
+      if (!ignoreResult) {
+        setAnimals(response);
+        setIsLoading(false);
+      }
+    };
+
+    fetchAnimals();
+
+    return () => {
+      ignoreResult = true;
+    };
+  }, []);
 
   const sortedAnimals = useMemo(() => {
     const copiedAnimals = [...animals];
@@ -37,9 +59,7 @@ export default function AllAnimalsPage() {
 
       <section className="mt-8">
         <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm font-semibold text-slate-700">
-            Total animals: {sortedAnimals.length}
-          </p>
+          <p className="text-sm font-semibold text-slate-700">Total animals: {sortedAnimals.length}</p>
 
           <label className="flex items-center gap-3 text-sm font-semibold text-slate-700">
             Sort by price
@@ -54,37 +74,57 @@ export default function AllAnimalsPage() {
           </label>
         </div>
 
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {sortedAnimals.map((animal) => (
-            <article
-              key={animal.id}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className={`h-28 bg-linear-to-r ${animal.tone}`} />
-              <div className="space-y-2 p-5">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
-                  {animal.breed}
-                </p>
-                <h2 className="text-lg font-extrabold text-slate-900">{animal.name}</h2>
-                <p className="text-sm text-slate-600">Age: {animal.age}</p>
-                <p className="text-sm text-slate-600">Weight: {animal.weight}</p>
-                <p className="text-sm text-slate-600">Location: {animal.location}</p>
-
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <p className="text-base font-black text-emerald-700">
-                    {formatPrice(animal.price)}
-                  </p>
-                  <Link
-                    href={`/animals/${animal.id}`}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition-all hover:border-emerald-500 hover:text-emerald-700"
-                  >
-                    Details
-                  </Link>
+        {isLoading ? (
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <article
+                key={`skeleton-${index}`}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+              >
+                <div className="h-28 animate-pulse bg-slate-200" />
+                <div className="space-y-3 p-5">
+                  <div className="h-3 w-20 animate-pulse rounded bg-slate-200" />
+                  <div className="h-4 w-40 animate-pulse rounded bg-slate-200" />
+                  <div className="h-3 w-full animate-pulse rounded bg-slate-200" />
+                  <div className="h-3 w-5/6 animate-pulse rounded bg-slate-200" />
+                  <div className="h-3 w-3/4 animate-pulse rounded bg-slate-200" />
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {sortedAnimals.map((animal) => (
+              <article
+                key={animal.id}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className={`h-28 bg-linear-to-r ${animal.tone}`} />
+                <div className="space-y-2 p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+                    {animal.breed}
+                  </p>
+                  <h2 className="text-lg font-extrabold text-slate-900">{animal.name}</h2>
+                  <p className="text-sm text-slate-600">Age: {animal.age}</p>
+                  <p className="text-sm text-slate-600">Weight: {animal.weight}</p>
+                  <p className="text-sm text-slate-600">Location: {animal.location}</p>
+
+                  <div className="mt-4 flex items-center justify-between gap-3">
+                    <p className="text-base font-black text-emerald-700">
+                      {formatPrice(animal.price)}
+                    </p>
+                    <Link
+                      href={`/animals/${animal.id}`}
+                      className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition-all hover:border-emerald-500 hover:text-emerald-700"
+                    >
+                      Details
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );

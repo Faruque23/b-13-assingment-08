@@ -102,3 +102,16 @@ export const animals = [
       "Affordable local option with verified age and weight details and consistent feed history.",
   },
 ];
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export async function getAnimals() {
+  await delay(700);
+  return animals;
+}
+
+export async function getAnimalById(id) {
+  await delay(700);
+  return animals.find((animal) => animal.id === id) || null;
+}
+

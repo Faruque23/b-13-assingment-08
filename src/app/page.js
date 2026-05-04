@@ -73,12 +73,12 @@ export default function Home() {
 
       <section className="mt-12">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-black tracking-tight text-white">
+          <h2 className="text-2xl font-black tracking-tight text-slate-900">
             Featured Animals
           </h2>
           <Link
             href="/animals"
-            className="text-sm font-semibold text-white hover:text-white-400"
+            className="text-sm font-semibold text-emerald-700 hover:text-emerald-800"
           >
             View all
           </Link>
@@ -132,6 +132,33 @@ export default function Home() {
             ))}
           </div>
         </article>
+      </section>
+
+      <section className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="text-2xl font-black tracking-tight text-slate-900">How Booking Works</h2>
+        <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          <article className="rounded-2xl bg-slate-50 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">Step 1</p>
+            <h3 className="mt-2 text-base font-extrabold text-slate-900">Pick an Animal</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Browse listings and open the details page to review full cattle information.
+            </p>
+          </article>
+          <article className="rounded-2xl bg-slate-50 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">Step 2</p>
+            <h3 className="mt-2 text-base font-extrabold text-slate-900">Complete Booking</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Login and submit your booking form with contact details for confirmation.
+            </p>
+          </article>
+          <article className="rounded-2xl bg-slate-50 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">Step 3</p>
+            <h3 className="mt-2 text-base font-extrabold text-slate-900">Get Delivery</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Our team coordinates delivery schedule and support before qurbani day.
+            </p>
+          </article>
+        </div>
       </section>
     </main>
   );

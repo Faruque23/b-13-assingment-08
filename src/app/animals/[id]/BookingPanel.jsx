@@ -1,34 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useAuth } from "../../../components/AuthProvider";
 
 export default function BookingPanel({ animalName }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
-  const toastTimerRef = useRef(null);
-
-  useEffect(() => {
-    return () => {
-      if (toastTimerRef.current) {
-        clearTimeout(toastTimerRef.current);
-      }
-    };
-  }, []);
+  const { user, showToast } = useAuth();
+  const isLoggedIn = Boolean(user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
 
     form.reset();
-    setShowSuccessToast(true);
-
-    if (toastTimerRef.current) {
-      clearTimeout(toastTimerRef.current);
-    }
-
-    toastTimerRef.current = setTimeout(() => {
-      setShowSuccessToast(false);
-    }, 2500);
+    showToast("Booking submitted successfully.");
   };
 
   return (
@@ -44,13 +28,12 @@ export default function BookingPanel({ animalName }) {
           <p className="text-sm font-semibold text-amber-800">
             Login required to submit a booking request.
           </p>
-          <button
-            type="button"
-            onClick={() => setIsLoggedIn(true)}
+          <Link
+            href="/login"
             className="mt-4 rounded-full bg-amber-600 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-amber-700"
           >
             Login to Continue
-          </button>
+          </Link>
         </div>
       ) : (
         <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
@@ -58,6 +41,7 @@ export default function BookingPanel({ animalName }) {
             Name
             <input
               type="text"
+              defaultValue={user?.name || ""}
               required
               placeholder="Enter your full name"
               className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-800 outline-none ring-emerald-500 focus:ring-2"
@@ -68,6 +52,7 @@ export default function BookingPanel({ animalName }) {
             Email
             <input
               type="email"
+              defaultValue={user?.email || ""}
               required
               placeholder="Enter your email"
               className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-800 outline-none ring-emerald-500 focus:ring-2"
@@ -102,12 +87,6 @@ export default function BookingPanel({ animalName }) {
           </button>
         </form>
       )}
-
-      {showSuccessToast ? (
-        <div className="pointer-events-none fixed bottom-5 right-5 z-50 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg">
-          Booking submitted successfully.
-        </div>
-      ) : null}
     </section>
   );
 }

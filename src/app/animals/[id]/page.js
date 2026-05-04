@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BookingPanel from "./BookingPanel";
-import { animals } from "../../../data/animals";
+import { getAnimalById } from "../../../data/animals";
 
 const formatPrice = (amount) =>
   new Intl.NumberFormat("en-BD", {
@@ -12,7 +12,7 @@ const formatPrice = (amount) =>
 
 export default async function AnimalDetailsPage({ params }) {
   const { id } = await params;
-  const animal = animals.find((item) => item.id === id);
+  const animal = await getAnimalById(id);
 
   if (!animal) {
     notFound();
