@@ -45,7 +45,7 @@ export default function AllAnimalsPage() {
       return a.price - b.price;
     });
     return copiedAnimals;
-  }, [sortBy]);
+  }, [animals, sortBy]);
 
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:px-8">

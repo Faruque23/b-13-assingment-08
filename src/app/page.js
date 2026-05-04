@@ -77,12 +77,12 @@ export default function Home() {
 
       <section className="mt-12">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-black tracking-tight text-slate-900">
+          <h2 className="text-2xl font-black tracking-tight text-white hover:text-slate-300">
             Featured Animals
           </h2>
           <Link
             href="/animals"
-            className="text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+            className="text-sm font-semibold text-white hover:text-slate-300"
           >
             View all
           </Link>

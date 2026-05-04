@@ -34,8 +34,7 @@ export const animals = [
     healthStatus: "Healthy and calm",
     description:
       "Well-maintained cattle with proper feeding history and regular health screening reports.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1400&q=80",
+    imageUrl: "/friesian-cow.jpg",
   },
   {
     id: "deshi-black",
@@ -91,8 +90,7 @@ export const animals = [
     healthStatus: "Excellent",
     description:
       "Top-tier breed known for size and stamina, raised in a controlled and hygienic environment.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?auto=format&fit=crop&w=1400&q=80",
+    imageUrl: "/brahman-prime.jpg",
   },
   {
     id: "local-white",
