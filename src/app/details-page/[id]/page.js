@@ -31,7 +31,11 @@ export default async function DetailsPage({ params }) {
           </Link>
 
           <section className="mt-4 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <div className={`h-40 bg-linear-to-r ${animal.tone} sm:h-52`} />
+            <img
+              src={animal.imageUrl}
+              alt={animal.name}
+              className="h-56 w-full object-cover"
+            />
             <div className="grid gap-8 p-6 lg:grid-cols-2 lg:p-8">
               <article>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">

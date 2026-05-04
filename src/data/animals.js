@@ -15,6 +15,8 @@ export const animals = [
     healthStatus: "Healthy and active",
     description:
       "Strong body frame and balanced weight gain with routine veterinary care from a certified farm.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1400&q=80",
   },
   {
     id: "friesian-cow",
@@ -32,6 +34,8 @@ export const animals = [
     healthStatus: "Healthy and calm",
     description:
       "Well-maintained cattle with proper feeding history and regular health screening reports.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1400&q=80",
   },
   {
     id: "deshi-black",
@@ -49,6 +53,8 @@ export const animals = [
     healthStatus: "Healthy",
     description:
       "Popular local breed with strong adaptability and reliable body condition for qurbani season.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&w=1400&q=80",
   },
   {
     id: "red-chittagong",
@@ -66,6 +72,8 @@ export const animals = [
     healthStatus: "Excellent",
     description:
       "Large-size premium cattle with complete vaccination and monitored nutrition program.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?auto=format&fit=crop&w=1400&q=80",
   },
   {
     id: "brahman-prime",
@@ -83,6 +91,8 @@ export const animals = [
     healthStatus: "Excellent",
     description:
       "Top-tier breed known for size and stamina, raised in a controlled and hygienic environment.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?auto=format&fit=crop&w=1400&q=80",
   },
   {
     id: "local-white",
@@ -100,6 +110,8 @@ export const animals = [
     healthStatus: "Healthy",
     description:
       "Affordable local option with verified age and weight details and consistent feed history.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?auto=format&fit=crop&w=1400&q=80",
   },
 ];
 

@@ -99,7 +99,12 @@ export default function AllAnimalsPage() {
                 key={animal.id}
                 className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className={`h-28 bg-linear-to-r ${animal.tone}`} />
+                <img
+                  src={animal.imageUrl}
+                  alt={animal.name}
+                  className="h-36 w-full object-cover"
+                  loading="lazy"
+                />
                 <div className="space-y-2 p-5">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
                     {animal.breed}

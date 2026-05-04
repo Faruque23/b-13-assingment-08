@@ -7,7 +7,8 @@ const featuredAnimals = [
     weight: "520 kg",
     location: "Rajshahi",
     price: "BDT 1,25,000",
-    tone: "from-amber-100 to-orange-100",
+    imageUrl:
+      "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1000&q=80",
   },
   {
     name: "Friesian Cow",
@@ -15,7 +16,8 @@ const featuredAnimals = [
     weight: "470 kg",
     location: "Sirajganj",
     price: "BDT 1,10,000",
-    tone: "from-cyan-100 to-sky-100",
+    imageUrl:
+      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1000&q=80",
   },
   {
     name: "Deshi Black",
@@ -23,7 +25,8 @@ const featuredAnimals = [
     weight: "390 kg",
     location: "Bogura",
     price: "BDT 95,000",
-    tone: "from-emerald-100 to-green-100",
+    imageUrl:
+      "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&w=1000&q=80",
   },
   {
     name: "Red Chittagong",
@@ -31,7 +34,8 @@ const featuredAnimals = [
     weight: "540 kg",
     location: "Chattogram",
     price: "BDT 1,35,000",
-    tone: "from-rose-100 to-pink-100",
+    imageUrl:
+      "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
@@ -90,7 +94,12 @@ export default function Home() {
               key={animal.name}
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div className={`h-28 bg-linear-to-r ${animal.tone}`} />
+              <img
+                src={animal.imageUrl}
+                alt={animal.name}
+                className="h-36 w-full object-cover"
+                loading="lazy"
+              />
               <div className="space-y-2 p-4">
                 <h3 className="text-base font-extrabold text-slate-900">{animal.name}</h3>
                 <p className="text-sm text-slate-600">Age: {animal.age}</p>
