@@ -16,8 +16,7 @@ const featuredAnimals = [
     weight: "470 kg",
     location: "Sirajganj",
     price: "BDT 1,10,000",
-    imageUrl:
-      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1000&q=80",
+    imageUrl: "/friesian-cow.jpg",
   },
   {
     name: "Deshi Black",
