@@ -147,6 +147,42 @@ export default function AuthProvider({ children }) {
     localStorage.removeItem(AUTH_STORAGE_KEY);
   }, []);
 
+  const updateUserProfile = useCallback(
+    async ({ name, photoUrl }) => {
+      if (!user) {
+        throw new Error("You must be logged in to update profile.");
+      }
+
+      await delay(600);
+
+      const nextUser = {
+        ...user,
+        name: name.trim(),
+        photoUrl: photoUrl.trim(),
+      };
+
+      setUser(nextUser);
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(nextUser));
+
+      const nextUsers = users.map((existingUser) => {
+        if (existingUser.email.toLowerCase() !== user.email.toLowerCase()) {
+          return existingUser;
+        }
+
+        return {
+          ...existingUser,
+          name: nextUser.name,
+          photoUrl: nextUser.photoUrl,
+        };
+      });
+
+      setUsers(nextUsers);
+      localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(nextUsers));
+      return nextUser;
+    },
+    [user, users]
+  );
+
   const value = useMemo(
     () => ({
       user,
@@ -155,9 +191,19 @@ export default function AuthProvider({ children }) {
       login,
       loginWithGoogle,
       logout,
+      updateUserProfile,
       showToast,
     }),
-    [user, isBootstrapped, register, login, loginWithGoogle, logout, showToast]
+    [
+      user,
+      isBootstrapped,
+      register,
+      login,
+      loginWithGoogle,
+      logout,
+      updateUserProfile,
+      showToast,
+    ]
   );
 
   return (

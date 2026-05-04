@@ -47,13 +47,19 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {isLoggedIn ? (
             <>
-              <button
-                type="button"
+              <Link
+                href="/my-profile"
                 aria-label="User avatar"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white"
               >
                 {initials}
-              </button>
+              </Link>
+              <Link
+                href="/my-profile"
+                className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:text-emerald-700"
+              >
+                My Profile
+              </Link>
               <button
                 type="button"
                 onClick={handleLogout}

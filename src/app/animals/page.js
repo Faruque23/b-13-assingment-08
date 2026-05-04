@@ -114,7 +114,7 @@ export default function AllAnimalsPage() {
                       {formatPrice(animal.price)}
                     </p>
                     <Link
-                      href={`/animals/${animal.id}`}
+                      href={`/details-page/${animal.id}`}
                       className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition-all hover:border-emerald-500 hover:text-emerald-700"
                     >
                       Details

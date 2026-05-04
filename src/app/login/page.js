@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "../../components/AuthProvider";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login, loginWithGoogle, showToast } = useAuth();
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,7 +24,8 @@ export default function LoginPage() {
     try {
       await login({ email, password });
       showToast("Login successful.");
-      router.push("/");
+      const nextPath = searchParams.get("next") || "/";
+      router.push(nextPath);
     } catch (caughtError) {
       const message = caughtError?.message || "Login failed. Please try again.";
       setError(message);
@@ -40,7 +42,8 @@ export default function LoginPage() {
     try {
       await loginWithGoogle();
       showToast("Google login successful.");
-      router.push("/");
+      const nextPath = searchParams.get("next") || "/";
+      router.push(nextPath);
     } catch {
       const message = "Google login failed. Please try again.";
       setError(message);
