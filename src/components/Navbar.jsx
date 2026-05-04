@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "./AuthProvider";
 
 const navLinks = [
@@ -27,8 +28,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="text-xl font-black tracking-tight text-slate-900">
-          QurbaniHat
+        <Link href="/" className="flex items-center">
+          <Image 
+            src="/logo.png" 
+            alt="QurbaniHat Logo" 
+            width={100} 
+            height={100}
+            priority
+          />
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

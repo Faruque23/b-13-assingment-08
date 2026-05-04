@@ -85,7 +85,6 @@ export default function RegisterPage() {
             <input
               type="url"
               name="photoUrl"
-              required
               placeholder="https://example.com/photo.jpg"
               className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-800 outline-none ring-emerald-500 focus:ring-2"
             />
