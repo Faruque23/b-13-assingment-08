@@ -1,69 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
-
-const animals = [
-  {
-    id: "sahiwal-bull",
-    name: "Sahiwal Bull",
-    breed: "Sahiwal",
-    age: "3 years",
-    weight: "520 kg",
-    location: "Rajshahi",
-    price: 125000,
-    tone: "from-amber-100 to-orange-100",
-  },
-  {
-    id: "friesian-cow",
-    name: "Friesian Cow",
-    breed: "Friesian",
-    age: "2.5 years",
-    weight: "470 kg",
-    location: "Sirajganj",
-    price: 110000,
-    tone: "from-cyan-100 to-sky-100",
-  },
-  {
-    id: "deshi-black",
-    name: "Deshi Black",
-    breed: "Deshi",
-    age: "2 years",
-    weight: "390 kg",
-    location: "Bogura",
-    price: 95000,
-    tone: "from-emerald-100 to-green-100",
-  },
-  {
-    id: "red-chittagong",
-    name: "Red Chittagong",
-    breed: "Red Chittagong",
-    age: "3.2 years",
-    weight: "540 kg",
-    location: "Chattogram",
-    price: 135000,
-    tone: "from-rose-100 to-pink-100",
-  },
-  {
-    id: "brahman-prime",
-    name: "Brahman Prime",
-    breed: "Brahman",
-    age: "3.5 years",
-    weight: "580 kg",
-    location: "Pabna",
-    price: 145000,
-    tone: "from-indigo-100 to-blue-100",
-  },
-  {
-    id: "local-white",
-    name: "Local White",
-    breed: "Deshi",
-    age: "2.1 years",
-    weight: "420 kg",
-    location: "Mymensingh",
-    price: 98000,
-    tone: "from-lime-100 to-emerald-100",
-  },
-];
+import { animals } from "../../data/animals";
 
 const formatPrice = (amount) =>
   new Intl.NumberFormat("en-BD", {
@@ -135,12 +74,12 @@ export default function AllAnimalsPage() {
                   <p className="text-base font-black text-emerald-700">
                     {formatPrice(animal.price)}
                   </p>
-                  <button
-                    type="button"
+                  <Link
+                    href={`/animals/${animal.id}`}
                     className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition-all hover:border-emerald-500 hover:text-emerald-700"
                   >
                     Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             </article>
